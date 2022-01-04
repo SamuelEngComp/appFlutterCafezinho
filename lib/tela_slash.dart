@@ -1,18 +1,9 @@
 
-import 'package:app_cafezinho_nuts/tela_inicial.dart';
+
 import 'package:app_cafezinho_nuts/textos.dart';
 import 'package:flutter/material.dart';
 
 class TelaSlash extends StatelessWidget {
-
-
-  /*final String tituloApp = 'Cafezinho';
-  final String subTituloApp = 'NUTS';
-  final String caminhoImagemLogo = 'assets/imagens/logo.png';
-  final String tituloIntroducao = 'Hora de Preparar o Crocodilo Dante';
-  final String textoIntroducao = 'A hora do cafezinho é uma das horas mais importantes do setor: Com isso, nada melhor do que realizar uma brincadeira para selecionar o colaborador que irá preparar o "Menor Crocodilo Dante."';
-  final String textoBotaoVamosComecar = 'Vamos Começar';
-*/
 
   @override
   Widget build(BuildContext context) {
@@ -20,40 +11,43 @@ class TelaSlash extends StatelessWidget {
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const <Widget> [
-                Text(tituloApp,
-                  style: TextStyle(fontSize: 50,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Sansita',
-                    fontStyle: FontStyle.italic,
-                  ),),
-              ],
-            ),
+            Expanded(
+              flex: 0,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: const <Widget> [
+                    Text(tituloApp,
+                      style: TextStyle(fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Sansita',
+                        fontStyle: FontStyle.italic,
+                      ),),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(subTituloApp,
-                  style: TextStyle(fontSize: 60,
-                      fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic,
-                  fontFamily: 'Sansita'),),
-              ],
+                    Text(subTituloApp,
+                      style: TextStyle(fontSize: 50,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic,
+                          fontFamily: 'Sansita'),),
+                  ],
+                ),
             ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(caminhoImagemLogo, alignment: Alignment.center, width: 300, height: 300,),
+                  Image.asset(caminhoImagemLogo,
+                    alignment: Alignment.center,
+                    width: 280,
+                    height: 280,),
                 ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
+                SizedBox(height: 50,),
                 Text(tituloIntroducao,
-                  style: TextStyle(fontSize: 23,
+                  style: TextStyle(fontSize: 20,
                       fontWeight: FontWeight.bold,
                   fontFamily: 'Sansita',
                   fontStyle: FontStyle.italic),),
@@ -61,12 +55,13 @@ class TelaSlash extends StatelessWidget {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
                 SizedBox(
-                  width: 366,
-                  height: 100,
+                  width: 320,
+                  height: 110,
                   child: Text(textoIntroducao,
-                    style: const TextStyle(fontSize: 15,
+                    style: TextStyle(fontSize: 15,
                         fontWeight: FontWeight.normal,
                         fontFamily: 'Sansita',
                         fontStyle: FontStyle.italic),),
@@ -79,14 +74,14 @@ class TelaSlash extends StatelessWidget {
                 ElevatedButton(
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18),
+                      borderRadius: BorderRadius.circular(10),
                     )),
                   ),
                     onPressed: (){
                     Navigator.pushNamed(context, '/segunda');
                     },
-                    child: Text(textoBotaoVamosComecar,
-                      style: const TextStyle(fontSize: 20,
+                    child: const Text(textoBotaoVamosComecar,
+                      style: TextStyle(fontSize: 20,
                           fontFamily: 'Sansita',
                           fontStyle: FontStyle.italic),),),
               ],
