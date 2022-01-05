@@ -1,6 +1,7 @@
 
 import 'package:app_cafezinho_nuts/tela_resultado.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class TelaCampos extends StatefulWidget {
 
@@ -36,10 +37,16 @@ class _TelaCamposState extends State<TelaCampos>{
           body: SafeArea(
             child: Column(
               children: <Widget> [
-                for(var i in pad)
-                  i,
+                if(pad.length == 2)
+                  buildPadding1(),
+                  buildPadding2(),
+                  buildElevatedButton(),
+                if(pad.length == 3)
+                  buildPadding1(),
+                  buildPadding2(),
+                  buildPadding3(),
+                  buildElevatedButton(),
 
-                buildElevatedButton(),
               ],
             ),
           ),
@@ -58,8 +65,8 @@ class _TelaCamposState extends State<TelaCampos>{
             context,
             MaterialPageRoute(
                 builder: (context) => TelaResultados(
-                nomeRecebido: 'Mister Bruno',
-                numeroRecebido: '3')));
+                nomeRecebido: controladorNome1.text,
+                numeroRecebido: controladorNumero1.text)));
       },
       child: Text(nomeBotaoJogar,
         style: TextStyle(fontSize: 20,
@@ -67,7 +74,7 @@ class _TelaCamposState extends State<TelaCampos>{
     );
   }
 
-  Padding buildPadding() {
+  Padding buildPadding1() {
     return Padding(
     padding: const EdgeInsets.all(5),
 
@@ -78,6 +85,7 @@ class _TelaCamposState extends State<TelaCampos>{
           width: 150,
           padding: EdgeInsets.all(5),
           child: TextField(
+            controller: controladorNome1,
             maxLength: 20,
             minLines: 1,
             maxLines: 1,
@@ -94,6 +102,7 @@ class _TelaCamposState extends State<TelaCampos>{
           width: 150,
           padding: EdgeInsets.all(5),
           child: TextField(
+            controller: controladorNumero1,
             maxLength: 4,
             minLines: 1,
             maxLines: 1,
@@ -111,13 +120,145 @@ class _TelaCamposState extends State<TelaCampos>{
   );
   }
 
+  Padding buildPadding2() {
+    return Padding(
+      padding: const EdgeInsets.all(5),
+
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:[
+          Container(
+            width: 150,
+            padding: EdgeInsets.all(5),
+            child: TextField(
+              controller: controladorNome2,
+              maxLength: 20,
+              minLines: 1,
+              maxLines: 1,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                hintText: 'Nome',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            width: 150,
+            padding: EdgeInsets.all(5),
+            child: TextField(
+              controller: controladorNumero2,
+              maxLength: 4,
+              minLines: 1,
+              maxLines: 1,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                hintText: 'Número',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding buildPadding3() {
+    return Padding(
+      padding: const EdgeInsets.all(5),
+
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:[
+          Container(
+            width: 150,
+            padding: EdgeInsets.all(5),
+            child: TextField(
+              controller: controladorNome3,
+              maxLength: 20,
+              minLines: 1,
+              maxLines: 1,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                hintText: 'Nome',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            width: 150,
+            padding: EdgeInsets.all(5),
+            child: TextField(
+              controller: controladorNumero3,
+              maxLength: 4,
+              minLines: 1,
+              maxLines: 1,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                hintText: 'Número',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  TextEditingController controladorNome1 = TextEditingController();
+  TextEditingController controladorNumero1 = TextEditingController();
+
+  TextEditingController controladorNome2 = TextEditingController();
+  TextEditingController controladorNumero2 = TextEditingController();
+
+  TextEditingController controladorNome3 = TextEditingController();
+  TextEditingController controladorNumero3 = TextEditingController();
+
   List<Widget> camposParaPreencher(){
     List<Widget> pad = [];
     for(int i=0; i<numeroClicado; i++){
-      pad.add(buildPadding());
+      pad.add(buildPadding1());
     }
       return pad;
   }
+
+  /*Map<String, String> aleatorio(){
+    var tecnico01 = Map();
+    var tecnico02 = Map();
+    var tecnico03 = Map();
+
+    tecnico01 = {'nome': controladorNome1.text, 'numero': controladorNumero1.text};
+    tecnico02 = {'nome': controladorNome2.text, 'numero': controladorNumero2.text};
+    tecnico03 = {'nome': controladorNome3.text, 'numero': controladorNumero3.text};
+
+    int tamanhoEscolhido = camposParaPreencher().length;
+
+    Random rand = Random();
+
+    //inicia um numero aleatorio e verifica se ele esta igual aos numeros selecionados
+    int num = rand.nextInt(100);
+
+    //logica do numero aleatorio entre tres numeros
+    while(num != 3){
+
+
+      //repetir ate encontrar um numero aleatorio que tenha pertencente aos numeros selecionados
+      int num = rand.nextInt(100);
+    }
+
+    Random().nextInt(max)
+
+
+
+    return nomeNumeroAleatorio;
+  }*/
 
 }
 
