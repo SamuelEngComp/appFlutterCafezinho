@@ -4,6 +4,11 @@ import 'package:flutter/material.dart';
 
 class TelaCampos extends StatefulWidget {
 
+  final int numeroSelecionado;
+
+
+  const TelaCampos({Key? key, required int this.numeroSelecionado}) : super(key: key);
+
 
   @override
   State<TelaCampos> createState() => _TelaCamposState();
@@ -13,16 +18,27 @@ class _TelaCamposState extends State<TelaCampos>{
 
   final String nomeBotaoJogar = 'Jogar';
 
+  late int numeroClicado;
+
+  @override
+  void initState() {
+    numeroClicado = widget.numeroSelecionado;
+    print('numero clicado: $numeroClicado');
+
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    List<Widget> pad = camposParaPreencher();
 
     return Scaffold(
           body: SafeArea(
             child: Column(
-              children: [
-                buildPadding(),
-                buildPadding(),
-                buildPadding(),
+              children: <Widget> [
+                for(var i in pad)
+                  i,
+
                 buildElevatedButton(),
               ],
             ),
@@ -34,7 +50,7 @@ class _TelaCamposState extends State<TelaCampos>{
     return ElevatedButton(
       style: ButtonStyle(
         shape: MaterialStateProperty.all(RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(10),
         )),
       ),
       onPressed: (){
@@ -94,5 +110,14 @@ class _TelaCamposState extends State<TelaCampos>{
     ),
   );
   }
+
+  List<Widget> camposParaPreencher(){
+    List<Widget> pad = [];
+    for(int i=0; i<numeroClicado; i++){
+      pad.add(buildPadding());
+    }
+      return pad;
+  }
+
 }
 

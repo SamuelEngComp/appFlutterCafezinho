@@ -15,7 +15,9 @@ class TelaResultados extends StatelessWidget {
 
   final String jogarNovamente = 'Jogar Novamente';
 
-  const TelaResultados({Key? key, required String this.nomeRecebido, required String this.numeroRecebido}) : super(key: key);
+  const TelaResultados({Key? key,
+    required String this.nomeRecebido,
+    required String this.numeroRecebido}) : super(key: key);
 
 
 

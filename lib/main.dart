@@ -22,13 +22,13 @@ class MyApp extends StatelessWidget {
       routes: {
         '/primeira': (context) => TelaSlash(),
         '/segunda': (context) => TelaInicial(),
-        '/terceira': (context) => TelaCampos(),
+        //'/terceira': (context) => TelaCampos(),
         //'/quarta':(context) => TelaResultados(),
       },
 
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.cyan,
+        primarySwatch: Colors.brown,
       ),
       home: MyHomePage(),
     );

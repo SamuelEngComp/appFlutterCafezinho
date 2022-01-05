@@ -1,7 +1,10 @@
 
+import 'package:app_cafezinho_nuts/tela_campos.dart';
+import 'package:app_cafezinho_nuts/tela_resultado.dart';
+import 'package:app_cafezinho_nuts/textos.dart';
 import 'package:flutter/material.dart';
 
-enum SingingCharacter{um, dois, tres}
+enum SingingCharacter{dois, tres}
 
 class TelaInicial extends StatefulWidget {
 
@@ -12,27 +15,10 @@ class TelaInicial extends StatefulWidget {
 
 class _TelaInicialState extends State<TelaInicial> {
 
-  int numeroUm = 1;
   int numeroDois = 2;
   int numeroTres = 3;
 
   SingingCharacter? _character; //= SingingCharacter.um;
-
-  final String tituloApp = 'Cafezinho';
-
-  final String subTituloApp = 'NUTS';
-
-  final String caminhoImagemLogo = 'assets/imagens/logo.png';
-
-  final String tituloInstrucoes = 'Como irá funcionar a dinâmica:';
-
-  final String instrucao01 = '1 - Selecione a quantidade de participantes;';
-
-  final String instrucao02 = '2 - Digite o nome e o número do participante;';
-
-  final String instrucao03 = '3 - Clique em "Jogar".';
-
-  final String botaoDigitarNomesNumeros = 'Digitar Nome e Número';
 
   @override
   Widget build(BuildContext context) {
@@ -42,126 +28,149 @@ class _TelaInicialState extends State<TelaInicial> {
       body: SafeArea(
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(tituloApp,
-              style: const TextStyle(fontSize: 25,
-                  fontWeight: FontWeight.bold,
-              fontStyle: FontStyle.italic),),
-            Text(subTituloApp,
-              style: const TextStyle(fontSize: 35,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic),),
-            Image.asset(caminhoImagemLogo,
-              alignment: Alignment.center,
-              width: 100,
-              height: 100,),
-            Text(tituloInstrucoes,
-              style: const TextStyle(fontSize: 23,
-                fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic),),
-            buildRow(),
-            Divider(color: Colors.black, height: 45,),
-            buildPadding(),
-            //buildElevatedButton(context),
-            _buildText(),
+            Expanded(
+              flex: 0,
+                child: Column(
+                  children: const <Widget> [
+                    Text(tituloApp,
+                      style: TextStyle(fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic),),
+                    Text(subTituloApp,
+                      style: TextStyle(fontSize: 50,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic),),
+                  ],
+                ),
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(caminhoImagemLogo,
+                  alignment: Alignment.center,
+                  width: 200,
+                  height: 200,),
+              ],
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                 Text(tituloInstrucoes,
+                    style: TextStyle(fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic),),
+              ],
+            ),
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Column(
+              children: const [
+                SizedBox(height: 10,),
+                Text(instrucao01,
+                  style: TextStyle(fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.italic),),
+                Text(instrucao02,
+                  style: TextStyle(fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.italic),),
+                Text(instrucao03,
+                  style: TextStyle(fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                      fontStyle: FontStyle.italic),),
+              ],
+            ),
+          ],
+        ),
+
+            Expanded(
+              flex: 0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text('Selecione:',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic),
+                  ),
+
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Radio<SingingCharacter>(
+                        value: SingingCharacter.dois,
+                        groupValue: _character,
+                        onChanged: (SingingCharacter? value) {
+                          setState(() {
+                            _character = value;
+                            print('Numero $numeroDois selecionado');
+                          });
+                        },
+                      ),
+
+                      const Text(
+                        'Dois',
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontStyle: FontStyle.italic
+                        ),
+
+                      ),
+
+                      Radio<SingingCharacter>(
+                        value: SingingCharacter.tres,
+                        groupValue: _character,
+                        onChanged: (SingingCharacter? value) {
+                          setState(() {
+                            _character = value;
+                            print('Numero $numeroTres selecionado');
+                          });
+                        },
+                      ),
+
+                      const Text(
+                        'Três',
+                        style: TextStyle(
+                            fontSize: 15,
+                            fontStyle: FontStyle.italic
+                        ),
+
+                      ),
+
+                    ],
+                  )
+
+                ],
+              ),
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              //crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _buildText(),
+              ],
+            ),
+
           ],
         ),
       )
 
     );
-  }
-
-  Row buildRow() {
-    return Row(
-             mainAxisAlignment: MainAxisAlignment.center,
-             children: [
-               Column(
-                children: [
-                  Text(instrucao01,
-                    style: const TextStyle(fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        fontStyle: FontStyle.italic),),
-                  Text(instrucao02,
-                    style: const TextStyle(fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        fontStyle: FontStyle.italic),),
-                  Text(instrucao03,
-                    style: const TextStyle(fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        fontStyle: FontStyle.italic),),
-                ],
-               ),
-             ],
-          );
-  }
-
-  Padding buildPadding() {
-    return Padding(
-          padding: EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text('Selecione:',
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic),
-              ),
-
-              ListTile(
-                title: const Text('Um',
-                  style: TextStyle(
-                      fontWeight: FontWeight.normal,
-                      fontStyle: FontStyle.italic),),
-                leading: Radio<SingingCharacter>(
-                  value: SingingCharacter.um,
-                  groupValue: _character,
-                  onChanged: (SingingCharacter? value) {
-                    setState(() {
-                      print('Numero $numeroUm selecionado');
-                      _character = value;
-                      print('Index ${value?.index} selecionado');
-                    });
-                  },
-                ),
-              ),
-
-              ListTile(
-                title: const Text('Dois',
-                style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FontStyle.italic),),
-                leading: Radio<SingingCharacter>(
-                  value: SingingCharacter.dois,
-                  groupValue: _character,
-                  onChanged: (SingingCharacter? value) {
-                    setState(() {
-                      _character = value;
-                      print('Numero $numeroDois selecionado');
-                    });
-                  },
-                ),
-              ),
-
-              ListTile(
-                title: const Text('Três',
-                style: TextStyle(
-                    fontWeight: FontWeight.normal,
-                    fontStyle: FontStyle.italic),),
-                leading: Radio<SingingCharacter>(
-                  value: SingingCharacter.tres,
-                  groupValue: _character,
-                  onChanged: (SingingCharacter? value) {
-                    setState(() {
-                      _character = value;
-                      print('Numero $numeroTres selecionado');
-                    });
-                  },
-                ),
-              ),
-            ],
-          ),
-        );
   }
 
   ElevatedButton _buildText(){
@@ -170,11 +179,12 @@ class _TelaInicialState extends State<TelaInicial> {
       return ElevatedButton(
         style: ButtonStyle(
           shape: MaterialStateProperty.all(RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(10),
           )),
         ),
         onPressed: (){
           //Navigator.pushNamed(context, '/terceira');
+          print('nao selecionou nada');
         },
         child: Text(botaoDigitarNomesNumeros,
           style: const TextStyle(
@@ -192,11 +202,17 @@ class _TelaInicialState extends State<TelaInicial> {
     return ElevatedButton(
            style: ButtonStyle(
              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-               borderRadius: BorderRadius.circular(18),
+               borderRadius: BorderRadius.circular(10),
              )),
            ),
            onPressed: (){
-             Navigator.pushNamed(context, '/terceira');
+
+             Navigator.push(
+                 context,
+                 MaterialPageRoute(
+                     builder: (context) => TelaCampos(numeroSelecionado: verificaBotaoClicado(_character),)));
+
+             //Navigator.pushNamed(context, '/terceira');
            },
            child: Text(botaoDigitarNomesNumeros,
              style: const TextStyle(
@@ -222,4 +238,19 @@ class _TelaInicialState extends State<TelaInicial> {
     }
 
   }*/
+
+  int verificaBotaoClicado(SingingCharacter? character){
+
+    if(character != null){
+      if(character.index == 0){
+        return 2;
+      }
+      if(character.index == 1){
+        return 3;
+      }
+    }
+    return 0;
+  }
+
+
 }
