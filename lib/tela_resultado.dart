@@ -1,4 +1,6 @@
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class TelaResultados extends StatelessWidget {
@@ -59,17 +61,19 @@ class TelaResultados extends StatelessWidget {
 
             Expanded(
               flex: 0,
-                child: Column(
-                  children: [
-                    Column(
+                child: Container(
+                  width: 350,
+                  height: 100,
+                  child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text('Parabéns "$nomeRecebido" o número "$numeroRecebido" foi o escolhido.',
+                        Text('Parabéns ${nomeRecebido.toUpperCase()}, o número $numeroRecebido foi o escolhido.',
                           style: const TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
                             fontStyle: FontStyle.normal,),),
+                        SizedBox(height: 10,),
                         const Text('Prepare um bom café',
                           style: TextStyle(
                               fontSize: 15,
@@ -77,7 +81,7 @@ class TelaResultados extends StatelessWidget {
                           ),),
                       ],
                     ),
-                  ],
+
 
             ),
             ),
@@ -94,6 +98,8 @@ class TelaResultados extends StatelessWidget {
                 ),
               ],
             ),
+
+          SizedBox(height: 10,),
 
           ElevatedButton(
             style: ButtonStyle(

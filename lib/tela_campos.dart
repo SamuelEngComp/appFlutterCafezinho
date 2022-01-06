@@ -1,15 +1,12 @@
 import 'package:flutter/services.dart';
 import 'package:app_cafezinho_nuts/tela_resultado.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 class TelaCampos extends StatefulWidget {
 
+  /// Recebendo o valor do radioButton selecionado
   final int numeroSelecionado;
-
-
   const TelaCampos({Key? key, required int this.numeroSelecionado}) : super(key: key);
-
 
   @override
   State<TelaCampos> createState() => _TelaCamposState();
@@ -18,22 +15,19 @@ class TelaCampos extends StatefulWidget {
 class _TelaCamposState extends State<TelaCampos>{
 
   final String nomeBotaoJogar = 'Jogar';
-
   late int numeroClicado;
 
   @override
   void initState() {
     numeroClicado = widget.numeroSelecionado;
-    print('numero clicado: $numeroClicado');
-
   }
 
   @override
   Widget build(BuildContext context) {
-
     return controleForm();
   }
 
+  /// Botão jogar
   ElevatedButton buildElevatedButton(){
     return ElevatedButton(
       style: ButtonStyle(
@@ -42,15 +36,7 @@ class _TelaCamposState extends State<TelaCampos>{
         )),
       ),
       onPressed: (){
-
-        Map nomeNumeroRetornoDaFuncao = aleatorio();
-
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => TelaResultados(
-                nomeRecebido: nomeNumeroRetornoDaFuncao['nome'],
-                numeroRecebido: nomeNumeroRetornoDaFuncao['numero'])));
+        validaOuNaoRedirecionamento();
       },
       child: Text(nomeBotaoJogar,
         style: const TextStyle(fontSize: 20,
@@ -58,6 +44,7 @@ class _TelaCamposState extends State<TelaCampos>{
     );
   }
 
+  /// Campo 1 - nome e numero
   Padding buildPadding() {
     return Padding(
     padding: const EdgeInsets.all(5),
@@ -68,7 +55,8 @@ class _TelaCamposState extends State<TelaCampos>{
         Container(
           width: 150,
           padding: EdgeInsets.all(5),
-          child: TextField(
+          child: TextFormField(
+            keyboardType: TextInputType.text,
             controller: controladorNome,
             maxLength: 20,
             minLines: 1,
@@ -85,7 +73,7 @@ class _TelaCamposState extends State<TelaCampos>{
         Container(
           width: 150,
           padding: EdgeInsets.all(5),
-          child: TextField(
+          child: TextFormField(
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             controller: controladorNumero,
@@ -106,6 +94,7 @@ class _TelaCamposState extends State<TelaCampos>{
   );
   }
 
+  /// Campo 2 - nome e numero
   Padding buildPadding2() {
     return Padding(
       padding: const EdgeInsets.all(5),
@@ -116,7 +105,7 @@ class _TelaCamposState extends State<TelaCampos>{
           Container(
             width: 150,
             padding: EdgeInsets.all(5),
-            child: TextField(
+            child: TextFormField(
               controller: controladorNome2,
               maxLength: 20,
               minLines: 1,
@@ -133,7 +122,7 @@ class _TelaCamposState extends State<TelaCampos>{
           Container(
             width: 150,
             padding: EdgeInsets.all(5),
-            child: TextField(
+            child: TextFormField(
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               controller: controladorNumero2,
@@ -154,6 +143,7 @@ class _TelaCamposState extends State<TelaCampos>{
     );
   }
 
+  /// Campo 3 - nome e numero
   Padding buildPadding3() {
     return Padding(
       padding: const EdgeInsets.all(5),
@@ -164,7 +154,7 @@ class _TelaCamposState extends State<TelaCampos>{
           Container(
             width: 150,
             padding: EdgeInsets.all(5),
-            child: TextField(
+            child: TextFormField(
               controller: controladorNome3,
               maxLength: 20,
               minLines: 1,
@@ -181,7 +171,7 @@ class _TelaCamposState extends State<TelaCampos>{
           Container(
             width: 150,
             padding: EdgeInsets.all(5),
-            child: TextField(
+            child: TextFormField(
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               controller: controladorNumero3,
@@ -202,6 +192,7 @@ class _TelaCamposState extends State<TelaCampos>{
     );
   }
 
+  /// variaveis criadas para receber os valores dos campos digitados
   TextEditingController controladorNome = TextEditingController();
   TextEditingController controladorNumero = TextEditingController();
 
@@ -211,6 +202,7 @@ class _TelaCamposState extends State<TelaCampos>{
   TextEditingController controladorNome3 = TextEditingController();
   TextEditingController controladorNumero3 = TextEditingController();
 
+  /// retorna os campos de acordo com o numero de participantes selecionado
   Scaffold controleForm(){
 
     if(numeroClicado == 2){
@@ -243,8 +235,10 @@ class _TelaCamposState extends State<TelaCampos>{
   }
 
 
-
-
+  /// 1- Cria os Maps de acordo com o numero de participantes
+  /// 2- Recebe os valores digitados dos campos
+  /// 3- adiciona os numeros em uma lista e embaralha eles, seleciona o
+  /// primeiro numero da lista embaralhada
   Map aleatorio(){
 
     int tamanhoEscolhido = numeroClicado;
@@ -291,25 +285,61 @@ class _TelaCamposState extends State<TelaCampos>{
       }
 
       if(indiceAleatorio == int.tryParse(tecnico01['numero'].toString())){
-
-        print('Tecnico 01 escolhido: $tecnico01');
-
         return tecnico01;
       }
       else if(indiceAleatorio == int.tryParse(tecnico02['numero'].toString())){
-
-        print('Tecnico 02 escolhido: $tecnico02');
-
         return tecnico02;
       }
       else{
-
-        print('Tecnico 03 escolhido: $tecnico03');
-
         return tecnico03;
       }
     }
   }
+
+
+  /// função para permitir/impedir o direcionamento da pagina
+  /// se os campos estiverem vazios... não encontrei outra forma
+  /// para validar, por isso estou fazendo assim
+  void validaOuNaoRedirecionamento(){
+
+    Map nomeNumeroRetornoDaFuncao = aleatorio();
+
+    if(numeroClicado == 2){
+      if(!(controladorNome.text.isEmpty) && (controladorNome.text.trim() != '')
+      && !(controladorNumero.text.isEmpty) && ((controladorNumero.text.trim() != ''))){
+        if(!(controladorNome2.text.isEmpty) && (controladorNome2.text.trim() != '')
+        && !(controladorNumero2.text.isEmpty) && (controladorNumero2.text.trim() != '')){
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => TelaResultados(
+                      nomeRecebido: nomeNumeroRetornoDaFuncao['nome'],
+                      numeroRecebido: nomeNumeroRetornoDaFuncao['numero'])));
+        }
+      }
+    }
+    else{
+
+      if(!(controladorNome.text.isEmpty) && (controladorNome.text.trim() != '')
+          && !(controladorNumero.text.isEmpty) && ((controladorNumero.text.trim() != ''))){
+        if(!(controladorNome2.text.isEmpty) && (controladorNome2.text.trim() != '')
+            && !(controladorNumero2.text.isEmpty) && (controladorNumero2.text.trim() != '')){
+          if(!(controladorNome3.text.isEmpty) && (controladorNome3.text.trim() != '')
+              && !(controladorNumero3.text.isEmpty) && (controladorNumero3.text.trim() != '')){
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => TelaResultados(
+                        nomeRecebido: nomeNumeroRetornoDaFuncao['nome'],
+                        numeroRecebido: nomeNumeroRetornoDaFuncao['numero'])));
+          }
+
+        }
+      }
+
+    }
+  }
+
 
 }
 

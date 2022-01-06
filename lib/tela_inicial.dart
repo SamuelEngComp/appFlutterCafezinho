@@ -1,9 +1,9 @@
 
 import 'package:app_cafezinho_nuts/tela_campos.dart';
-import 'package:app_cafezinho_nuts/tela_resultado.dart';
 import 'package:app_cafezinho_nuts/textos.dart';
 import 'package:flutter/material.dart';
 
+/// Enum criada para simular o radio button
 enum SingingCharacter{dois, tres}
 
 class TelaInicial extends StatefulWidget {
@@ -15,8 +15,6 @@ class TelaInicial extends StatefulWidget {
 
 class _TelaInicialState extends State<TelaInicial> {
 
-  int numeroDois = 2;
-  int numeroTres = 3;
 
   SingingCharacter? _character; //= SingingCharacter.um;
 
@@ -27,7 +25,6 @@ class _TelaInicialState extends State<TelaInicial> {
 
       body: SafeArea(
         child: Column(
-          //mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
@@ -117,7 +114,6 @@ class _TelaInicialState extends State<TelaInicial> {
                         onChanged: (SingingCharacter? value) {
                           setState(() {
                             _character = value;
-                            print('Numero $numeroDois selecionado');
                           });
                         },
                       ),
@@ -137,7 +133,6 @@ class _TelaInicialState extends State<TelaInicial> {
                         onChanged: (SingingCharacter? value) {
                           setState(() {
                             _character = value;
-                            print('Numero $numeroTres selecionado');
                           });
                         },
                       ),
@@ -160,9 +155,8 @@ class _TelaInicialState extends State<TelaInicial> {
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              //crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                _buildText(),
+                verificaRadioSelecionado(),
               ],
             ),
 
@@ -173,8 +167,8 @@ class _TelaInicialState extends State<TelaInicial> {
     );
   }
 
-  ElevatedButton _buildText(){
-
+  /// So ativa o botao se o radio button for selecionado
+  ElevatedButton verificaRadioSelecionado(){
     if(_character == null){
       return ElevatedButton(
         style: ButtonStyle(
@@ -182,14 +176,10 @@ class _TelaInicialState extends State<TelaInicial> {
             borderRadius: BorderRadius.circular(10),
           )),
         ),
-        onPressed: (){
-          //Navigator.pushNamed(context, '/terceira');
-          print('nao selecionou nada');
-        },
+        onPressed: (){},
         child: const Text(botaoDigitarNomesNumeros,
           style: TextStyle(
               fontSize: 20,
-              fontFamily: 'Sansita',
               fontStyle: FontStyle.normal),),
       );
     }
@@ -198,6 +188,7 @@ class _TelaInicialState extends State<TelaInicial> {
     }
   }
 
+  /// Botao construido e com o redirecionamento passando o radioButton selecionado
   ElevatedButton buildElevatedButton(BuildContext context) {
     return ElevatedButton(
            style: ButtonStyle(
@@ -206,22 +197,21 @@ class _TelaInicialState extends State<TelaInicial> {
              )),
            ),
            onPressed: (){
-
              Navigator.push(
                  context,
                  MaterialPageRoute(
                      builder: (context) => TelaCampos(numeroSelecionado: verificaBotaoClicado(_character),)));
-
-             //Navigator.pushNamed(context, '/terceira');
            },
            child: const Text(botaoDigitarNomesNumeros,
              style: TextStyle(
                  fontSize: 20,
-                 fontFamily: 'Sansita',
                  fontStyle: FontStyle.normal),),
         );
   }
 
+  /// Retorna 2 ou 3, de acordo com o radioButton selecionado,
+  /// o index 0 significa o radio button 2 e index 1 significa o
+  /// radio button 3
   int verificaBotaoClicado(SingingCharacter? character){
 
     if(character != null){
