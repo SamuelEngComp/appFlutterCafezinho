@@ -2,15 +2,20 @@
 
 App para selecionar a pessoa que irá preparar o cafezinho da tarde
 
-## Getting Started
+## Como funciona
 
-This project is a starting point for a Flutter application.
+Bom, na tela inicial constam as boas vindas ao clicar no botão 'Vamos Começar',
+será redirecionado para a tela com as instruções:
+    1 - Selecionar a quantidade de participantes (Limite ao máximo de 3);
+    2 - Digitar o nome e o número do participante;
+    3 - Por fim, clicar em jogar
 
-A few resources to get you started if this is your first Flutter project:
+A lógica é selecionar de forma aleatória um número de acordo com os digitados 
+pelos participantes.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Observações
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1 - O código não está totalmente refatorado, existem funções que precisam ser melhoradas,
+mas está funcional;
+
+2 - Devido a outras demandas, vou refatorar e separar os códigos em outros arquivos aos poucos.
