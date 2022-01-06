@@ -1,4 +1,4 @@
-
+import 'package:flutter/services.dart';
 import 'package:app_cafezinho_nuts/tela_resultado.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -54,7 +54,7 @@ class _TelaCamposState extends State<TelaCampos>{
       },
       child: Text(nomeBotaoJogar,
         style: const TextStyle(fontSize: 20,
-          fontStyle: FontStyle.italic),),
+          fontStyle: FontStyle.normal),),
     );
   }
 
@@ -86,6 +86,8 @@ class _TelaCamposState extends State<TelaCampos>{
           width: 150,
           padding: EdgeInsets.all(5),
           child: TextField(
+            keyboardType: TextInputType.number,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             controller: controladorNumero,
             maxLength: 4,
             minLines: 1,
@@ -132,6 +134,8 @@ class _TelaCamposState extends State<TelaCampos>{
             width: 150,
             padding: EdgeInsets.all(5),
             child: TextField(
+              keyboardType: TextInputType.number,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               controller: controladorNumero2,
               maxLength: 4,
               minLines: 1,
@@ -178,6 +182,8 @@ class _TelaCamposState extends State<TelaCampos>{
             width: 150,
             padding: EdgeInsets.all(5),
             child: TextField(
+              keyboardType: TextInputType.number,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               controller: controladorNumero3,
               maxLength: 4,
               minLines: 1,
