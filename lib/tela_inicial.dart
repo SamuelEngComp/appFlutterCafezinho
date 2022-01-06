@@ -37,11 +37,11 @@ class _TelaInicialState extends State<TelaInicial> {
                     Text(tituloApp,
                       style: TextStyle(fontSize: 40,
                           fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.italic),),
+                          fontStyle: FontStyle.normal),),
                     Text(subTituloApp,
                       style: TextStyle(fontSize: 50,
                           fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.italic),),
+                          fontStyle: FontStyle.normal),),
                   ],
                 ),
             ),
@@ -64,7 +64,7 @@ class _TelaInicialState extends State<TelaInicial> {
                  Text(tituloInstrucoes,
                     style: TextStyle(fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic),),
+                        fontStyle: FontStyle.normal),),
               ],
             ),
 
@@ -78,15 +78,15 @@ class _TelaInicialState extends State<TelaInicial> {
                 Text(instrucao01,
                   style: TextStyle(fontSize: 15,
                       fontWeight: FontWeight.normal,
-                      fontStyle: FontStyle.italic),),
+                      fontStyle: FontStyle.normal),),
                 Text(instrucao02,
                   style: TextStyle(fontSize: 15,
                       fontWeight: FontWeight.normal,
-                      fontStyle: FontStyle.italic),),
+                      fontStyle: FontStyle.normal),),
                 Text(instrucao03,
                   style: TextStyle(fontSize: 15,
                       fontWeight: FontWeight.normal,
-                      fontStyle: FontStyle.italic),),
+                      fontStyle: FontStyle.normal),),
               ],
             ),
           ],
@@ -104,7 +104,7 @@ class _TelaInicialState extends State<TelaInicial> {
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.italic),
+                        fontStyle: FontStyle.normal),
                   ),
 
                   Row(
@@ -126,7 +126,7 @@ class _TelaInicialState extends State<TelaInicial> {
                         'Dois',
                         style: TextStyle(
                             fontSize: 15,
-                            fontStyle: FontStyle.italic
+                            fontStyle: FontStyle.normal
                         ),
 
                       ),
@@ -146,7 +146,7 @@ class _TelaInicialState extends State<TelaInicial> {
                         'Três',
                         style: TextStyle(
                             fontSize: 15,
-                            fontStyle: FontStyle.italic
+                            fontStyle: FontStyle.normal
                         ),
 
                       ),
@@ -186,11 +186,11 @@ class _TelaInicialState extends State<TelaInicial> {
           //Navigator.pushNamed(context, '/terceira');
           print('nao selecionou nada');
         },
-        child: Text(botaoDigitarNomesNumeros,
-          style: const TextStyle(
+        child: const Text(botaoDigitarNomesNumeros,
+          style: TextStyle(
               fontSize: 20,
               fontFamily: 'Sansita',
-              fontStyle: FontStyle.italic),),
+              fontStyle: FontStyle.normal),),
       );
     }
     else{
@@ -214,30 +214,13 @@ class _TelaInicialState extends State<TelaInicial> {
 
              //Navigator.pushNamed(context, '/terceira');
            },
-           child: Text(botaoDigitarNomesNumeros,
-             style: const TextStyle(
+           child: const Text(botaoDigitarNomesNumeros,
+             style: TextStyle(
                  fontSize: 20,
                  fontFamily: 'Sansita',
-                 fontStyle: FontStyle.italic),),
+                 fontStyle: FontStyle.normal),),
         );
   }
-
-  /*void ativarBotao(){
-    bool ativar = false;
-
-    if(_character == null){
-      setState(() {
-        ativar = false;
-      });
-    }
-    else{
-      setState(() {
-        ativar = true;
-        Navigator.pushNamed(context, '/terceira');
-      });
-    }
-
-  }*/
 
   int verificaBotaoClicado(SingingCharacter? character){
 

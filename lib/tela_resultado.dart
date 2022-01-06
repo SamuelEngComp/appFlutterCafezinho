@@ -26,32 +26,63 @@ class TelaResultados extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          //mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(tituloApp,
-              style: const TextStyle(fontSize: 25,
-                  fontWeight: FontWeight.bold,
-              fontStyle: FontStyle.italic),),
-            Text(subTituloApp,
-              style: const TextStyle(fontSize: 35,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic),),
-            Image.asset(caminhoImagemLogo,
-              alignment: Alignment.center,
-              width: 250,
-              height: 200,),
-            Divider(color: Colors.black, height: 45,),
-            Text('Parabéns: $nomeRecebido o número $numeroRecebido foi o escolhido.',
-              style: const TextStyle(
-                  fontSize: 20,
-                  fontStyle: FontStyle.italic,),),
-            const Text('Prepare um bom café',
-              style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic
-              ),),
+
+            Expanded(
+              flex: 0,
+                child: Column(
+                  children: [
+                    Text(tituloApp,
+                      style: const TextStyle(fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.normal),),
+                    Text(subTituloApp,
+                      style: const TextStyle(fontSize: 50,
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.normal),),
+                  ],
+                ),
+            ),
+
+            Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(caminhoImagemLogo,
+                    alignment: Alignment.center,
+                    width: 200,
+                    height: 200,),
+                ],
+            ),
+
+            Expanded(
+              flex: 0,
+                child: Column(
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('Parabéns "$nomeRecebido" o número "$numeroRecebido" foi o escolhido.',
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.normal,),),
+                        const Text('Prepare um bom café',
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontStyle: FontStyle.normal
+                          ),),
+                      ],
+                    ),
+                  ],
+
+            ),
+            ),
+
+
             Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -67,7 +98,7 @@ class TelaResultados extends StatelessWidget {
           ElevatedButton(
             style: ButtonStyle(
               shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18),
+                  borderRadius: BorderRadius.circular(10),
               )),
             ),
             onPressed: (){
@@ -76,7 +107,7 @@ class TelaResultados extends StatelessWidget {
               child: Text(jogarNovamente,
                 style: const TextStyle(
                   fontSize: 20,
-                    fontStyle: FontStyle.italic),),
+                    fontStyle: FontStyle.normal),),
             ),
 
 
