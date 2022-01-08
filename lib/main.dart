@@ -1,4 +1,6 @@
 
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+
 import 'package:app_cafezinho_nuts/tela_inicial.dart';
 import 'package:app_cafezinho_nuts/tela_slash.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +30,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: AnimatedSplashScreen(
+        splashIconSize: 300,
+        splash: Image.asset('assets/imagens/icone_cafe.png',
+        ),
+        nextScreen: MyHomePage(),
+        splashTransition: SplashTransition.fadeTransition,
+        backgroundColor: Colors.white,
+        duration: 2500,
+      ),
     );
   }
 }
