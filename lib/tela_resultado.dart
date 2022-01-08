@@ -1,6 +1,6 @@
 
-import 'dart:ffi';
 
+import 'package:app_cafezinho_nuts/tela_inicial.dart';
 import 'package:flutter/material.dart';
 
 class TelaResultados extends StatelessWidget {
@@ -26,36 +26,27 @@ class TelaResultados extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title:  Text(tituloApp + " " + subTituloApp,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),),
+      ),
       body: SafeArea(
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
-            Expanded(
-              flex: 0,
-                child: Column(
-                  children: [
-                    Text(tituloApp,
-                      style: const TextStyle(fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.normal),),
-                    Text(subTituloApp,
-                      style: const TextStyle(fontSize: 50,
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.normal),),
-                  ],
-                ),
-            ),
-
             Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset(caminhoImagemLogo,
                     alignment: Alignment.center,
-                    width: 200,
-                    height: 200,),
+                    width: 280,
+                    height: 280,),
                 ],
             ),
 
@@ -108,7 +99,10 @@ class TelaResultados extends StatelessWidget {
               )),
             ),
             onPressed: (){
-              Navigator.pushNamed(context, '/segunda');
+
+              Navigator.push(context,
+                  MaterialPageRoute(
+                      builder: (context) => TelaInicial()));
             },
               child: Text(jogarNovamente,
                 style: const TextStyle(

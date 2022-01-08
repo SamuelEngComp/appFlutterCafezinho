@@ -19,25 +19,25 @@ class MyApp extends StatelessWidget {
 
       //initialRoute: '/',
 
-      routes: {
+      /*routes: {
         '/primeira': (context) => TelaSlash(),
         '/segunda': (context) => TelaInicial(),
         //'/terceira': (context) => TelaCampos(),
         //'/quarta':(context) => TelaResultados(),
-      },
+      },*/
+
 
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.brown,
       ),
       home: AnimatedSplashScreen(
         splashIconSize: 300,
         splash: Image.asset('assets/imagens/icone_cafe.png',
         ),
-        nextScreen: MyHomePage(),
         splashTransition: SplashTransition.fadeTransition,
-        backgroundColor: Colors.white,
-        duration: 2500,
+        nextScreen: MyHomePage(),
+        //duration: 2500,
       ),
     );
   }

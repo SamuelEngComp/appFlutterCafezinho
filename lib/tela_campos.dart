@@ -1,3 +1,4 @@
+import 'package:app_cafezinho_nuts/textos.dart';
 import 'package:flutter/services.dart';
 import 'package:app_cafezinho_nuts/tela_resultado.dart';
 import 'package:flutter/material.dart';
@@ -207,6 +208,14 @@ class _TelaCamposState extends State<TelaCampos>{
 
     if(numeroClicado == 2){
       return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text(tituloApp + " " + subTituloApp,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),),
+        ),
         body: SafeArea(
           child: Column(
             children: <Widget> [
@@ -220,6 +229,14 @@ class _TelaCamposState extends State<TelaCampos>{
     }
     else{
       return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text(tituloApp + " " + subTituloApp,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),),
+        ),
         body: SafeArea(
           child: Column(
             children: <Widget> [

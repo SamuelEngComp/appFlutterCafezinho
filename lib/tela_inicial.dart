@@ -22,35 +22,30 @@ class _TelaInicialState extends State<TelaInicial> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: (){
+          Navigator.pop(context);
+        },),
+        title: const Text(tituloApp + " " + subTituloApp,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),),
+      ),
 
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Expanded(
-              flex: 0,
-                child: Column(
-                  children: const <Widget> [
-                    Text(tituloApp,
-                      style: TextStyle(fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.normal),),
-                    Text(subTituloApp,
-                      style: TextStyle(fontSize: 50,
-                          fontWeight: FontWeight.bold,
-                          fontStyle: FontStyle.normal),),
-                  ],
-                ),
-            ),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Image.asset(caminhoImagemLogo,
                   alignment: Alignment.center,
-                  width: 200,
-                  height: 200,),
+                  width: 280,
+                  height: 280,),
               ],
             ),
 
