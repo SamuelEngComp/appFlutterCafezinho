@@ -35,27 +35,28 @@ class TelaResultados extends StatelessWidget {
           ),),
       ),
       body: SafeArea(
-        child: Column(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: LayoutBuilder(
+            builder: (_, constraints){
+              return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Image.asset(caminhoImagemLogo,
-                    alignment: Alignment.center,
-                    width: 280,
-                    height: 280,),
-                ],
-            ),
+                  Container(
+                    width: constraints.maxWidth,
+                    height: constraints.maxHeight/4,
+                    child: Image.asset(caminhoImagemLogo,
+                      alignment: Alignment.center,
+                      width: constraints.maxWidth,
+                      height: constraints.maxHeight/4,),
+                  ),
 
-            Expanded(
-              flex: 0,
-                child: Container(
-                  width: 350,
-                  height: 100,
-                  child: Column(
+                  Container(
+                    width: constraints.maxWidth * .8,
+                    height: constraints.maxHeight/4,
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -72,46 +73,52 @@ class TelaResultados extends StatelessWidget {
                           ),),
                       ],
                     ),
+                  ),
 
+                  Container(
+                    width: constraints.maxWidth,
+                    height: constraints.maxHeight/4,
+                    child: Image.asset(caminhoImagemMaos,
+                      alignment: Alignment.center,
+                      width: constraints.maxWidth,
+                      height: constraints.maxHeight/4,
+                    ),
+                  ),
 
-            ),
-            ),
+                  Container(
+                    width: constraints.maxWidth,
+                    height: constraints.maxHeight/4,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 10,),
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            )),
+                          ),
+                          onPressed: (){
 
+                            Navigator.push(context,
+                                MaterialPageRoute(
+                                    builder: (context) => TelaInicial()));
+                          },
+                          child: Text(jogarNovamente,
+                            style: const TextStyle(
+                                fontSize: 20,
+                                fontStyle: FontStyle.normal),),
+                        ),
+                      ],
+                    ),
 
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Image.asset(caminhoImagemMaos,
-                  alignment: Alignment.center,
-                  width: 100,
-                  height: 100,
-                ),
-              ],
-            ),
+                  ),
 
-          SizedBox(height: 10,),
-
-          ElevatedButton(
-            style: ButtonStyle(
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-              )),
-            ),
-            onPressed: (){
-
-              Navigator.push(context,
-                  MaterialPageRoute(
-                      builder: (context) => TelaInicial()));
+                ],
+              );
             },
-              child: Text(jogarNovamente,
-                style: const TextStyle(
-                  fontSize: 20,
-                    fontStyle: FontStyle.normal),),
-            ),
-
-
-          ],
+          ),
         ),
 
 

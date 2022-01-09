@@ -18,70 +18,81 @@ class TelaSlash extends StatelessWidget {
         ),),
       ),
       body: SafeArea(
-        child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(caminhoImagemLogo,
-                      alignment: Alignment.center,
-                      width: 280,
-                      height: 280,),
-                  ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  SizedBox(height: 50,),
-                  Text(tituloIntroducao,
-                    style: TextStyle(fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                    fontFamily: 'Sansita',
-                    fontStyle: FontStyle.normal),),
-                ],
-              ),
-              Row(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: LayoutBuilder(
+            builder: (_, constraints){
+              return Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  SizedBox(
-                    width: 320,
-                    height: 110,
-                    child: Text(textoIntroducao,
-                      style: TextStyle(fontSize: 15,
-                          fontWeight: FontWeight.normal,
-                          fontFamily: 'Sansita',
-                          fontStyle: FontStyle.normal),),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      )),
-                    ),
-                      onPressed: (){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => TelaInicial()));
+                  Container(
+                    width: constraints.maxWidth,
+                    height: constraints.maxHeight/3,
+                    child: Image.asset(caminhoImagemLogo,
+                        alignment: Alignment.center,
+                        width: constraints.maxWidth,
+                        height: constraints.maxHeight/3,),
+                  ),
 
-                      //Navigator.pushNamed(context, '/segunda');
-                      },
-                      child: const Text(textoBotaoVamosComecar,
-                        style: TextStyle(fontSize: 20,
-                            fontFamily: 'Sansita',
-                            fontStyle: FontStyle.normal),),),
-                ],
-              ),
-            ],
+                  Container(
+                    width: constraints.maxWidth * 0.8,
+                    height: constraints.maxHeight/3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: const [
+                         Text(tituloIntroducao,
+                           style: TextStyle(fontSize: 20,
+                               fontWeight: FontWeight.bold,
+                               fontFamily: 'Sansita',
+                               fontStyle: FontStyle.normal),),
+                         SizedBox(height: 10,),
+                         Text(textoIntroducao,
+                           style: TextStyle(fontSize: 15,
+                               fontWeight: FontWeight.normal,
+                               fontFamily: 'Sansita',
+                               fontStyle: FontStyle.normal),),
+                       ],
+                     ),
+                    ),
+
+                    Container(
+                      width: constraints.maxWidth,
+                      height: constraints.maxHeight/3,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              )),
+                            ),
+                            onPressed: (){
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => TelaInicial()));
+
+                              //Navigator.pushNamed(context, '/segunda');
+                            },
+                            child: const Text(textoBotaoVamosComecar,
+                              style: TextStyle(fontSize: 20,
+                                  fontFamily: 'Sansita',
+                                  fontStyle: FontStyle.normal),),
+                          ),
+                        ],
+                      ),
+                    ),
+
+              ],
+              );
+            },
           ),
-      ),
+
+              ),),
     );
   }
 }

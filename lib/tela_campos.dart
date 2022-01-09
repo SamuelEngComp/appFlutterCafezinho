@@ -41,58 +41,58 @@ class _TelaCamposState extends State<TelaCampos>{
       },
       child: Text(nomeBotaoJogar,
         style: const TextStyle(fontSize: 20,
-          fontStyle: FontStyle.normal),),
+            fontStyle: FontStyle.normal),),
     );
   }
 
   /// Campo 1 - nome e numero
   Padding buildPadding() {
     return Padding(
-    padding: const EdgeInsets.all(5),
+      padding: const EdgeInsets.all(5),
 
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children:[
-        Container(
-          width: 150,
-          padding: EdgeInsets.all(5),
-          child: TextFormField(
-            keyboardType: TextInputType.text,
-            controller: controladorNome,
-            maxLength: 20,
-            minLines: 1,
-            maxLines: 1,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-              hintText: 'Nome',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:[
+          Container(
+            width: 150,
+            padding: EdgeInsets.all(5),
+            child: TextFormField(
+              keyboardType: TextInputType.text,
+              controller: controladorNome,
+              maxLength: 20,
+              minLines: 1,
+              maxLines: 1,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                hintText: 'Nome',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
               ),
             ),
           ),
-        ),
-        Container(
-          width: 150,
-          padding: EdgeInsets.all(5),
-          child: TextFormField(
-            keyboardType: TextInputType.number,
-            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            controller: controladorNumero,
-            maxLength: 4,
-            minLines: 1,
-            maxLines: 1,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-              hintText: 'Número',
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
+          Container(
+            width: 150,
+            padding: EdgeInsets.all(5),
+            child: TextFormField(
+              keyboardType: TextInputType.number,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              controller: controladorNumero,
+              maxLength: 4,
+              minLines: 1,
+              maxLines: 1,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                hintText: 'Número',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
               ),
             ),
           ),
-        ),
-      ],
-    ),
-  );
+        ],
+      ),
+    );
   }
 
   /// Campo 2 - nome e numero
@@ -323,9 +323,9 @@ class _TelaCamposState extends State<TelaCampos>{
 
     if(numeroClicado == 2){
       if(!(controladorNome.text.isEmpty) && (controladorNome.text.trim() != '')
-      && !(controladorNumero.text.isEmpty) && ((controladorNumero.text.trim() != ''))){
+          && !(controladorNumero.text.isEmpty) && ((controladorNumero.text.trim() != ''))){
         if(!(controladorNome2.text.isEmpty) && (controladorNome2.text.trim() != '')
-        && !(controladorNumero2.text.isEmpty) && (controladorNumero2.text.trim() != '')){
+            && !(controladorNumero2.text.isEmpty) && (controladorNumero2.text.trim() != '')){
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -359,4 +359,3 @@ class _TelaCamposState extends State<TelaCampos>{
 
 
 }
-

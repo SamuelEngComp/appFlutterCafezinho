@@ -35,127 +35,130 @@ class _TelaInicialState extends State<TelaInicial> {
       ),
 
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(caminhoImagemLogo,
-                  alignment: Alignment.center,
-                  width: 280,
-                  height: 280,),
-              ],
-            ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: const [
-                 Text(tituloInstrucoes,
-                    style: TextStyle(fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.normal),),
-              ],
-            ),
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Column(
-              children: const [
-                SizedBox(height: 10,),
-                Text(instrucao01,
-                  style: TextStyle(fontSize: 15,
-                      fontWeight: FontWeight.normal,
-                      fontStyle: FontStyle.normal),),
-                Text(instrucao02,
-                  style: TextStyle(fontSize: 15,
-                      fontWeight: FontWeight.normal,
-                      fontStyle: FontStyle.normal),),
-                Text(instrucao03,
-                  style: TextStyle(fontSize: 15,
-                      fontWeight: FontWeight.normal,
-                      fontStyle: FontStyle.normal),),
-              ],
-            ),
-          ],
-        ),
-
-            Expanded(
-              flex: 0,
-              child: Column(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: LayoutBuilder(
+            builder: (_, constraints){
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Text('Selecione:',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        fontStyle: FontStyle.normal),
+                  Container(
+                    width: constraints.maxWidth,
+                    height: constraints.maxHeight/4,
+                    child: Image.asset(caminhoImagemLogo,
+                      alignment: Alignment.center,
+                      width: constraints.maxWidth,
+                      height: constraints.maxHeight/4,),
                   ),
 
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Radio<SingingCharacter>(
-                        value: SingingCharacter.dois,
-                        groupValue: _character,
-                        onChanged: (SingingCharacter? value) {
-                          setState(() {
-                            _character = value;
-                          });
-                        },
-                      ),
 
-                      const Text(
-                        'Dois',
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontStyle: FontStyle.normal
+
+                  Container(
+                    width: constraints.maxWidth * 0.8,
+                    height: constraints.maxHeight/4,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const [
+                          Text(tituloInstrucoes,
+                            style: TextStyle(fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FontStyle.normal),),
+                          Text(instrucao01,
+                            style: TextStyle(fontSize: 15,
+                                fontWeight: FontWeight.normal,
+                                fontStyle: FontStyle.normal),),
+                          Text(instrucao02,
+                            style: TextStyle(fontSize: 15,
+                                fontWeight: FontWeight.normal,
+                                fontStyle: FontStyle.normal),),
+                          Text(instrucao03,
+                            style: TextStyle(fontSize: 15,
+                                fontWeight: FontWeight.normal,
+                                fontStyle: FontStyle.normal),),
+
+                        ],
+                    ),
+                  ),
+
+                  Container(
+                    width: constraints.maxWidth,
+                    height: constraints.maxHeight/4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text('Selecione:',
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.normal),
                         ),
 
-                      ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Radio<SingingCharacter>(
+                              value: SingingCharacter.dois,
+                              groupValue: _character,
+                              onChanged: (SingingCharacter? value) {
+                                setState(() {
+                                  _character = value;
+                                });
+                              },
+                            ),
 
-                      Radio<SingingCharacter>(
-                        value: SingingCharacter.tres,
-                        groupValue: _character,
-                        onChanged: (SingingCharacter? value) {
-                          setState(() {
-                            _character = value;
-                          });
-                        },
-                      ),
+                            const Text(
+                              'Dois',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontStyle: FontStyle.normal
+                              ),
 
-                      const Text(
-                        'Três',
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontStyle: FontStyle.normal
-                        ),
+                            ),
 
-                      ),
+                            Radio<SingingCharacter>(
+                              value: SingingCharacter.tres,
+                              groupValue: _character,
+                              onChanged: (SingingCharacter? value) {
+                                setState(() {
+                                  _character = value;
+                                });
+                              },
+                            ),
 
-                    ],
-                  )
+                            const Text(
+                              'Três',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontStyle: FontStyle.normal
+                              ),
+
+                            ),
+
+                          ],
+                        )
+
+                      ],
+                    ),
+                  ),
+
+                  Container(
+                    width: constraints.maxWidth,
+                    height: constraints.maxHeight/4,
+                    child: Column(
+                      children: [
+                        verificaRadioSelecionado(),
+                      ],
+                    ),
+                  ),
 
                 ],
-              ),
-            ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                verificaRadioSelecionado(),
-              ],
-            ),
-
-          ],
+              );
+            },
+          ),
         ),
       )
 
