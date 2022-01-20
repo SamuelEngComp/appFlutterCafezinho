@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:app_cafezinho_nuts/tela_resultado.dart';
 import 'package:flutter/material.dart';
 
+
 class TelaCampos extends StatefulWidget {
 
   /// Recebendo o valor do radioButton selecionado
@@ -15,34 +16,99 @@ class TelaCampos extends StatefulWidget {
 
 class _TelaCamposState extends State<TelaCampos>{
 
+
   final String nomeBotaoJogar = 'Jogar';
   late int numeroClicado;
 
   @override
   void initState() {
     numeroClicado = widget.numeroSelecionado;
+    validarNumerosIguais();
   }
 
   @override
   Widget build(BuildContext context) {
-    return controleForm();
+
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(tituloApp + " " + subTituloApp,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontStyle: FontStyle.italic,
+            fontSize: 20,
+          ),),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          reverse: true,
+          child: controleForm(),
+
+        ),
+      ),
+    );
   }
 
   /// Botão jogar
   ElevatedButton buildElevatedButton(){
-    return ElevatedButton(
-      style: ButtonStyle(
-        shape: MaterialStateProperty.all(RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        )),
-      ),
-      onPressed: (){
-        validaOuNaoRedirecionamento();
-      },
-      child: Text(nomeBotaoJogar,
-        style: const TextStyle(fontSize: 20,
-            fontStyle: FontStyle.normal),),
-    );
+      return ElevatedButton(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            )),
+          ),
+          onPressed: (){
+            setState(() {
+              if(validarNumerosIguais() != 0){
+                validaOuNaoRedirecionamento();
+              }
+              else{
+                showModalBottomSheet<void>(
+                    context: context,
+                    builder: (BuildContext context) {
+                  return Container(
+                    height: 100,
+                    color: Colors.white,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          const Text('Campos vazios ou iguais ! ! ! ',
+                          style: TextStyle(fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            fontStyle: FontStyle.italic,),),
+                          ElevatedButton(
+                            child: const Text('Fechar',
+                            style: TextStyle(fontSize: 20,
+                              fontWeight: FontWeight.normal,
+                              fontStyle: FontStyle.italic,)),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              )),
+                            ),
+                            onPressed: () => Navigator.pop(context),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+              }
+            });
+          },
+
+          child: Text(nomeBotaoJogar,
+            style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.normal,
+                fontStyle: FontStyle.italic),),
+        );
+
+
+
   }
 
   /// Campo 1 - nome e numero
@@ -64,7 +130,9 @@ class _TelaCamposState extends State<TelaCampos>{
               maxLines: 1,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                hintText: 'Nome',
+                label: const Text('Nome',
+                  style: TextStyle(fontWeight: FontWeight.normal, fontStyle: FontStyle.italic,
+                ),),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -83,7 +151,9 @@ class _TelaCamposState extends State<TelaCampos>{
               maxLines: 1,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                hintText: 'Número',
+                label: const Text('Número',
+                  style: TextStyle(fontWeight: FontWeight.normal, fontStyle: FontStyle.italic,),
+                ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -113,7 +183,8 @@ class _TelaCamposState extends State<TelaCampos>{
               maxLines: 1,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                hintText: 'Nome',
+                label: const Text('Nome',
+                  style: TextStyle(fontWeight: FontWeight.normal, fontStyle: FontStyle.italic,),),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -132,7 +203,8 @@ class _TelaCamposState extends State<TelaCampos>{
               maxLines: 1,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                hintText: 'Número',
+                label: const Text('Número',
+                  style: TextStyle(fontWeight: FontWeight.normal, fontStyle: FontStyle.italic,),),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -162,7 +234,8 @@ class _TelaCamposState extends State<TelaCampos>{
               maxLines: 1,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                hintText: 'Nome',
+                label: const Text('Nome',
+                  style: TextStyle(fontWeight: FontWeight.normal, fontStyle: FontStyle.italic,),),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -181,7 +254,8 @@ class _TelaCamposState extends State<TelaCampos>{
               maxLines: 1,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                hintText: 'Número',
+                label: const Text('Número',
+                  style: TextStyle(fontWeight: FontWeight.normal, fontStyle: FontStyle.italic,),),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -204,50 +278,62 @@ class _TelaCamposState extends State<TelaCampos>{
   TextEditingController controladorNumero3 = TextEditingController();
 
   /// retorna os campos de acordo com o numero de participantes selecionado
-  Scaffold controleForm(){
+  Widget controleForm(){
 
     if(numeroClicado == 2){
-      return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text(tituloApp + " " + subTituloApp,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),),
-        ),
-        body: SafeArea(
-          child: Column(
+      return Column(
             children: <Widget> [
+              SizedBox(height: 35,),
               buildPadding(),
               buildPadding2(),
               buildElevatedButton(),
             ],
-          ),
-        ),
-      );
+          );
     }
     else{
-      return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text(tituloApp + " " + subTituloApp,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),),
-        ),
-        body: SafeArea(
-          child: Column(
-            children: <Widget> [
-              buildPadding(),
-              buildPadding2(),
-              buildPadding3(),
-              buildElevatedButton(),
-            ],
-          ),
-        ),
+      return Column(
+        children: <Widget> [
+          SizedBox(height: 35,),
+          buildPadding(),
+          buildPadding2(),
+          buildPadding3(),
+          buildElevatedButton(),
+        ],
       );
+    }
+  }
+
+  int validarNumerosIguais(){
+
+    if(widget.numeroSelecionado == 2){
+      int? numero01 = int.tryParse(controladorNumero.text);
+      int? numero02 = int.tryParse(controladorNumero2.text);
+      String nome01 = controladorNome.text;
+      String nome02 = controladorNome2.text;
+      if(numero01 == numero02 || nome01.trim() == nome02.trim() || nome01.isEmpty == nome02.isEmpty
+      || nome01.isEmpty || nome02.isEmpty){
+        return 0;
+      }
+      else{
+        return 1;
+      }
+    }else if(widget.numeroSelecionado == 3){
+      int? numero01 = int.tryParse(controladorNumero.text);
+      int? numero02 = int.tryParse(controladorNumero2.text);
+      int? numero03 = int.tryParse(controladorNumero3.text);
+      String nome01 = controladorNome.text;
+      String nome02 = controladorNome2.text;
+      String nome03 = controladorNome3.text;
+      if(numero01 == numero02 || numero01 == numero03 || numero02 == numero03 ||
+          nome01.trim() == nome02.trim() || nome01.trim() == nome03.trim() ||
+          nome02.trim() == nome03.trim() || nome01.isEmpty || nome02.isEmpty || nome03.isEmpty){
+        return 0;
+      }
+      else{
+        return 1;
+      }
+    }else{
+      return 0;
     }
   }
 

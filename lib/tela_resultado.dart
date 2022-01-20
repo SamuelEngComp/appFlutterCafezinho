@@ -15,7 +15,7 @@ class TelaResultados extends StatelessWidget {
   final String caminhoImagemLogo = 'assets/imagens/logo.png';
   final String caminhoImagemMaos = 'assets/imagens/maos.png';
 
-  final String jogarNovamente = 'Jogar Novamente';
+  static const String jogarNovamente = 'Jogar Novamente';
 
   const TelaResultados({Key? key,
     required String this.nomeRecebido,
@@ -31,6 +31,7 @@ class TelaResultados extends StatelessWidget {
         title:  Text(tituloApp + " " + subTituloApp,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
+            fontStyle: FontStyle.italic,
             fontSize: 20,
           ),),
       ),
@@ -62,14 +63,14 @@ class TelaResultados extends StatelessWidget {
                       children: [
                         Text('Parabéns ${nomeRecebido.toUpperCase()}, o número $numeroRecebido foi o escolhido.',
                           style: const TextStyle(
-                            fontSize: 15,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
-                            fontStyle: FontStyle.normal,),),
-                        SizedBox(height: 10,),
+                            fontStyle: FontStyle.italic,),),
+                        const SizedBox(height: 10,),
                         const Text('Prepare um bom café',
                           style: TextStyle(
-                              fontSize: 15,
-                              fontStyle: FontStyle.normal
+                              fontSize: 20,
+                              fontStyle: FontStyle.italic
                           ),),
                       ],
                     ),
@@ -92,7 +93,7 @@ class TelaResultados extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(height: 10,),
+                        const SizedBox(height: 10,),
                         ElevatedButton(
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all(RoundedRectangleBorder(
@@ -105,10 +106,11 @@ class TelaResultados extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) => TelaInicial()));
                           },
-                          child: Text(jogarNovamente,
-                            style: const TextStyle(
+                          child: const Text(jogarNovamente,
+                            style: TextStyle(
                                 fontSize: 20,
-                                fontStyle: FontStyle.normal),),
+                                fontWeight: FontWeight.normal,
+                                fontStyle: FontStyle.italic),),
                         ),
                       ],
                     ),

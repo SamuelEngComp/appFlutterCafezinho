@@ -8,19 +8,25 @@ class TelaSlash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final double altura = MediaQuery.of(context).size.height;
+    final double largura = MediaQuery.of(context).size.width;
+
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text(tituloApp + " " + subTituloApp,
         style: TextStyle(
+          fontStyle: FontStyle.italic,
           fontWeight: FontWeight.bold,
           fontSize: 20,
         ),),
       ),
       body: SafeArea(
         child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          width: largura,
+          height: altura,
           child: LayoutBuilder(
             builder: (_, constraints){
               return Column(
@@ -46,14 +52,12 @@ class TelaSlash extends StatelessWidget {
                          Text(tituloIntroducao,
                            style: TextStyle(fontSize: 20,
                                fontWeight: FontWeight.bold,
-                               fontFamily: 'Sansita',
-                               fontStyle: FontStyle.normal),),
+                               fontStyle: FontStyle.italic),),
                          SizedBox(height: 10,),
                          Text(textoIntroducao,
                            style: TextStyle(fontSize: 15,
                                fontWeight: FontWeight.normal,
-                               fontFamily: 'Sansita',
-                               fontStyle: FontStyle.normal),),
+                               fontStyle: FontStyle.italic),),
                        ],
                      ),
                     ),
@@ -79,9 +83,10 @@ class TelaSlash extends StatelessWidget {
                               //Navigator.pushNamed(context, '/segunda');
                             },
                             child: const Text(textoBotaoVamosComecar,
-                              style: TextStyle(fontSize: 20,
-                                  fontFamily: 'Sansita',
-                                  fontStyle: FontStyle.normal),),
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.normal,
+                                  fontStyle: FontStyle.italic),),
                           ),
                         ],
                       ),

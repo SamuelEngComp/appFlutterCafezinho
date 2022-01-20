@@ -18,26 +18,31 @@ class _TelaInicialState extends State<TelaInicial> {
 
   SingingCharacter? _character; //= SingingCharacter.um;
 
+
   @override
   Widget build(BuildContext context) {
+    final double altura = MediaQuery.of(context).size.height;
+    final double largura = MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        leading: IconButton(icon: Icon(Icons.arrow_back), onPressed: (){
-          Navigator.pop(context);
-        },),
+        leading: IconButton(icon: Icon(Icons.arrow_back),
+          onPressed: (){
+            Navigator.pop(context);
+          },),
         title: const Text(tituloApp + " " + subTituloApp,
           style: TextStyle(
             fontWeight: FontWeight.bold,
+            fontStyle: FontStyle.italic,
             fontSize: 20,
           ),),
       ),
 
       body: SafeArea(
         child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          width: largura,
+          height: altura,
           child: LayoutBuilder(
             builder: (_, constraints){
               return Column(
@@ -63,22 +68,25 @@ class _TelaInicialState extends State<TelaInicial> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                         children: const [
                           Text(tituloInstrucoes,
-                            style: TextStyle(fontSize: 20,
+                            style: TextStyle(
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
-                                fontStyle: FontStyle.normal),),
+                                fontStyle: FontStyle.italic),),
+                          SizedBox(height: 5,),
                           Text(instrucao01,
                             style: TextStyle(fontSize: 15,
                                 fontWeight: FontWeight.normal,
-                                fontStyle: FontStyle.normal),),
+                                fontStyle: FontStyle.italic),),
+
                           Text(instrucao02,
                             style: TextStyle(fontSize: 15,
                                 fontWeight: FontWeight.normal,
-                                fontStyle: FontStyle.normal),),
+                                fontStyle: FontStyle.italic),),
+
                           Text(instrucao03,
                             style: TextStyle(fontSize: 15,
                                 fontWeight: FontWeight.normal,
-                                fontStyle: FontStyle.normal),),
-
+                                fontStyle: FontStyle.italic),),
                         ],
                     ),
                   ),
@@ -88,13 +96,16 @@ class _TelaInicialState extends State<TelaInicial> {
                     height: constraints.maxHeight/4,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        const SizedBox(height: 10,),
                         const Text('Selecione:',
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              fontStyle: FontStyle.normal),
+                              fontStyle: FontStyle.italic),
                         ),
+
 
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,7 +125,7 @@ class _TelaInicialState extends State<TelaInicial> {
                               'Dois',
                               style: TextStyle(
                                   fontSize: 15,
-                                  fontStyle: FontStyle.normal
+                                  fontStyle: FontStyle.italic
                               ),
 
                             ),
@@ -133,7 +144,7 @@ class _TelaInicialState extends State<TelaInicial> {
                               'Três',
                               style: TextStyle(
                                   fontSize: 15,
-                                  fontStyle: FontStyle.normal
+                                  fontStyle: FontStyle.italic
                               ),
 
                             ),
@@ -150,6 +161,7 @@ class _TelaInicialState extends State<TelaInicial> {
                     height: constraints.maxHeight/4,
                     child: Column(
                       children: [
+                       const SizedBox(height: 15,),
                         verificaRadioSelecionado(),
                       ],
                     ),
@@ -174,11 +186,12 @@ class _TelaInicialState extends State<TelaInicial> {
             borderRadius: BorderRadius.circular(10),
           )),
         ),
-        onPressed: (){},
+        onPressed: null,
         child: const Text(botaoDigitarNomesNumeros,
           style: TextStyle(
               fontSize: 20,
-              fontStyle: FontStyle.normal),),
+              fontWeight: FontWeight.normal,
+              fontStyle: FontStyle.italic),),
       );
     }
     else{
@@ -203,7 +216,8 @@ class _TelaInicialState extends State<TelaInicial> {
            child: const Text(botaoDigitarNomesNumeros,
              style: TextStyle(
                  fontSize: 20,
-                 fontStyle: FontStyle.normal),),
+                 fontWeight: FontWeight.normal,
+                 fontStyle: FontStyle.italic),),
         );
   }
 

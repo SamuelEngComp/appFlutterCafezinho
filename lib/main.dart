@@ -1,7 +1,5 @@
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-
-import 'package:app_cafezinho_nuts/tela_inicial.dart';
 import 'package:app_cafezinho_nuts/tela_slash.dart';
 import 'package:flutter/material.dart';
 
@@ -17,19 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
 
-      //initialRoute: '/',
-
-      /*routes: {
-        '/primeira': (context) => TelaSlash(),
-        '/segunda': (context) => TelaInicial(),
-        //'/terceira': (context) => TelaCampos(),
-        //'/quarta':(context) => TelaResultados(),
-      },*/
-
-
-      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.brown,
+        fontFamily: 'Arapey',
       ),
       home: AnimatedSplashScreen(
         splashIconSize: 300,
