@@ -310,8 +310,8 @@ class _TelaCamposState extends State<TelaCampos>{
       int? numero02 = int.tryParse(controladorNumero2.text);
       String nome01 = controladorNome.text;
       String nome02 = controladorNome2.text;
-      if(numero01 == numero02 || nome01.trim() == nome02.trim() || nome01.isEmpty == nome02.isEmpty
-      || nome01.isEmpty || nome02.isEmpty){
+      if(numero01 == numero02 || nome01.trim() == nome02.trim() || nome01.isEmpty || nome02.isEmpty
+      || nome01.toUpperCase() == nome02.toUpperCase()){
         return 0;
       }
       else{
@@ -326,7 +326,9 @@ class _TelaCamposState extends State<TelaCampos>{
       String nome03 = controladorNome3.text;
       if(numero01 == numero02 || numero01 == numero03 || numero02 == numero03 ||
           nome01.trim() == nome02.trim() || nome01.trim() == nome03.trim() ||
-          nome02.trim() == nome03.trim() || nome01.isEmpty || nome02.isEmpty || nome03.isEmpty){
+          nome02.trim() == nome03.trim() || nome01.isEmpty || nome02.isEmpty || nome03.isEmpty
+      || nome01.toUpperCase() == nome02.toUpperCase() || nome01.toUpperCase() == nome03.toUpperCase()
+      || nome02.toUpperCase() == nome03.toUpperCase()){
         return 0;
       }
       else{

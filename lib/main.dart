@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
 
       theme: ThemeData(
         primarySwatch: Colors.brown,
-        fontFamily: 'Arapey',
+        //fontFamily: 'Arapey',
       ),
       home: AnimatedSplashScreen(
         splashIconSize: 300,
