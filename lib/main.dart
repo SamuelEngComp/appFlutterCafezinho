@@ -1,5 +1,6 @@
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:app_cafezinho_nuts/tela_animacao.dart';
 import 'package:app_cafezinho_nuts/tela_slash.dart';
 import 'package:flutter/material.dart';
 
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         ),
         splashTransition: SplashTransition.fadeTransition,
         nextScreen: MyHomePage(),
+        //nextScreen: Animacao(),
         //duration: 2500,
       ),
     );

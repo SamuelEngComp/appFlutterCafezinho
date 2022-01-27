@@ -1,7 +1,9 @@
+import 'package:app_cafezinho_nuts/tela_animacao.dart';
 import 'package:app_cafezinho_nuts/textos.dart';
 import 'package:flutter/services.dart';
 import 'package:app_cafezinho_nuts/tela_resultado.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 
 class TelaCampos extends StatefulWidget {
@@ -14,7 +16,11 @@ class TelaCampos extends StatefulWidget {
   State<TelaCampos> createState() => _TelaCamposState();
 }
 
-class _TelaCamposState extends State<TelaCampos>{
+class _TelaCamposState extends State<TelaCampos> with SingleTickerProviderStateMixin{
+
+  late final AnimationController _controller;
+  bool _isShow = false;
+
 
 
   final String nomeBotaoJogar = 'Jogar';
@@ -22,9 +28,22 @@ class _TelaCamposState extends State<TelaCampos>{
 
   @override
   void initState() {
+    _isShow = false;
     numeroClicado = widget.numeroSelecionado;
     validarNumerosIguais();
+    _controller = AnimationController(
+      vsync: this, // the SingleTickerProviderStateMixin
+      duration: Duration(seconds: 2),
+    );
   }
+
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -283,7 +302,7 @@ class _TelaCamposState extends State<TelaCampos>{
     if(numeroClicado == 2){
       return Column(
             children: <Widget> [
-              SizedBox(height: 35,),
+              const SizedBox(height: 35,),
               buildPadding(),
               buildPadding2(),
               buildElevatedButton(),
@@ -293,7 +312,7 @@ class _TelaCamposState extends State<TelaCampos>{
     else{
       return Column(
         children: <Widget> [
-          SizedBox(height: 35,),
+          const SizedBox(height: 35,),
           buildPadding(),
           buildPadding2(),
           buildPadding3(),
@@ -414,12 +433,23 @@ class _TelaCamposState extends State<TelaCampos>{
           && !(controladorNumero.text.isEmpty) && ((controladorNumero.text.trim() != ''))){
         if(!(controladorNome2.text.isEmpty) && (controladorNome2.text.trim() != '')
             && !(controladorNumero2.text.isEmpty) && (controladorNumero2.text.trim() != '')){
-          Navigator.push(
+
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Animacao(
+                      nomeRecebido: nomeNumeroRetornoDaFuncao['nome'],
+                      numeroRecebido: nomeNumeroRetornoDaFuncao['numero'])));
+
+          /*
+          Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                   builder: (context) => TelaResultados(
                       nomeRecebido: nomeNumeroRetornoDaFuncao['nome'],
                       numeroRecebido: nomeNumeroRetornoDaFuncao['numero'])));
+
+           */
         }
       }
     }
@@ -431,10 +461,10 @@ class _TelaCamposState extends State<TelaCampos>{
             && !(controladorNumero2.text.isEmpty) && (controladorNumero2.text.trim() != '')){
           if(!(controladorNome3.text.isEmpty) && (controladorNome3.text.trim() != '')
               && !(controladorNumero3.text.isEmpty) && (controladorNumero3.text.trim() != '')){
-            Navigator.push(
+            Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => TelaResultados(
+                    builder: (context) => Animacao(
                         nomeRecebido: nomeNumeroRetornoDaFuncao['nome'],
                         numeroRecebido: nomeNumeroRetornoDaFuncao['numero'])));
           }

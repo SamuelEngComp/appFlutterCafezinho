@@ -2,6 +2,7 @@
 
 import 'package:app_cafezinho_nuts/tela_inicial.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class TelaResultados extends StatelessWidget {
 
